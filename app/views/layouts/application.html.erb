@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bookers2</title>
+    <title>Bookers5</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -35,16 +35,29 @@
             <% end %>
           </ul>
         </nav>
-
       </div>
     </header>
     <!--ヘッダーの記述-->
     <div class="container">
       <p id="notice"><%= notice %></p> <!--デバイスでnotice設定されているので呼び出してるだけ-->
+      <!-- 検索窓 -->
+    <% if user_signed_in? %>
+    <%= form_tag(search_path, method: :get) do %>
+     <%= text_field_tag :search_word %>
+     <%= select_tag(:option, options_for_select([["user","1"],["book","2"]])) %>
+     <%= select_tag(:choice, options_for_select([["前方一致","1"],["後方一致","2"],["完全一致","3"],["部分一致","4"]])) %>
+     <%= submit_tag "search" %>
+    <% end %>
+    <% end %>
+
+    <!-- 検索窓 -->
+
 　　<div class="body">
       <%= yield %>
     </div>
 
     </div>
   </body>
+
+
 </html>

@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	@book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
     # @books = @user.books
-    @books = current_user.books
+    @books = @user.books
   end
 
   def index
@@ -37,6 +37,7 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user.id)
     end
   end
+
 
   private
   def user_params
